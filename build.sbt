@@ -36,3 +36,13 @@ dockerfile in docker := {
     entryPoint("java", "-cp", classpathString, mainclass)
   }
 }
+
+lazy val tag = taskKey[Unit]("Execute the docker tag shell script")
+tag := {
+   "docker tag default/akkahttp-docker-example jackyohhub/akkahttp-docker-example"!
+}
+
+lazy val push = taskKey[Unit]("Execute the push to docker registry")
+push := {
+   "docker push jackyohhub/akkahttp-docker-example"!
+}
